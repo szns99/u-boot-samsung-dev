@@ -2555,7 +2555,7 @@ int fastboot_preboot(void)
 	//if (!(readl(0xE160000C) & 0x82))
 	if (!(readl(0xE160000C) & 0x80))
 	{
-		return 1;
+		return 0;
 	}
 
 	return 0;
