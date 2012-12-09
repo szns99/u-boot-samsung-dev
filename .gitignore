@@ -10,33 +10,52 @@
 *.orig
 *.a
 *.o
+*.su
 *~
+*.swp
 *.patch
+*.bin
+
+# Build tree
+/build-*
 
 #
 # Top-level generic files
 #
 
+/MLO
 /System.map
 /u-boot
 /u-boot.hex
+/u-boot.imx
 /u-boot.map
-/u-boot.bin
 /u-boot.srec
 /u-boot.ldr
 /u-boot.ldr.hex
 /u-boot.ldr.srec
-/u-boot-onenand.bin
-/u-boot-flexonenand.bin
+/u-boot.img
+/u-boot.kwb
+/u-boot.sha1
+/u-boot.dis
+/u-boot.lds
+/u-boot.ubl
+/u-boot.ais
+/u-boot.dtb
+/u-boot.sb
+/u-boot.geany
+/include/u-boot.lst
 
 #
 # Generated files
 #
 
-*.depend
+*.depend*
 /LOG
 /errlog
 /reloc_off
+
+/include/generated/
+asm-offsets.s
 
 # stgit generated dirs
 patches-*
@@ -46,20 +65,16 @@ patches-*
 patches
 series
 
+# gdb files
+.gdb_history
+
 # cscope files
 cscope.*
 
-# OneNAND IPL files
-/onenand_ipl/onenand-ipl*
-/onenand_ipl/board/*/onenand*
-/onenand_ipl/board/*/*.S
+# tags files
+/tags
+/ctags
+/etags
 
-# OneNAND BL1 files
-/onenand_bl1/smdk*/BL1.bin*
-/onenand_bl1/smdk*/BL1.elf
-/onenand_bl1/smdk*/BL1.map
-/onenand_bl1/smdk*/mkbl1
-
-# sd_fusing
-sd_fusing/mkbl1
-sd_fusing/sd_fdisk
+# spl ais files
+/spl/*.ais
