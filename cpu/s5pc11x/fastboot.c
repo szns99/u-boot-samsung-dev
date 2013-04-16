@@ -2532,6 +2532,7 @@ int  fboot_usb_int_hndlr(void)
    Returns 1 to execute fastboot */
 int fastboot_preboot(void)
 {
+	u32 val;
 	if (memcmp((const char *)CFG_FASTBOOT_TRANSFER_BUFFER,
 		FASTBOOT_REBOOT_MAGIC, FASTBOOT_REBOOT_MAGIC_SIZE) == 0)
 	{
@@ -2546,14 +2547,23 @@ int fastboot_preboot(void)
 	writel(0x0, 0xE0200C48);
 	writel(0x33333333, 0xE0200C60);
 	writel(0xAAAA, 0xE0200C68);
+	
+	//enter fastboot condition
+	writel(readl(0xE0200C20) & ~0xffff, 0xE0200C20); 
+	writel(readl(0xE0200C28) & ~0xffff, 0xE0200C28); 
+	val = readl(0xE0200C24);
+	if ((val & 0x0C) == 0x00)
+	{
+		return 1;
+	}
 
-	writel(readl(0xE1600008) & ~0xffff, 0xE1600008);
+	//writel(readl(0xE1600008) & ~0xffff, 0xE1600008);
 
 	/* It seems that we require a little time before reading keypad */
 	printf("checking mode for fastboot ...\n");
 
 	//if (!(readl(0xE160000C) & 0x82))
-	if (!(readl(0xE160000C) & 0x80))
+	//if (!(readl(0xE160000C) & 0x80))
 	{
 		return 0;
 	}
