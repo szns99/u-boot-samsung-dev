@@ -40,7 +40,6 @@ SECTIONS
           cpu/s5pc11x/movi.o (.text) 
           common/secure_boot.o (.text) 
 	  common/ace_sha1.o (.text)
-	  cpu/s5pc11x/pmic.o (.text)
 	  *(.text)
 	}
 
