@@ -2549,8 +2549,10 @@ int fastboot_preboot(void)
 	writel(0xAAAA, 0xE0200C68);
 	
 	//enter fastboot condition
-	writel(readl(0xE0200C20) & ~0xffff, 0xE0200C20); 
-	writel(readl(0xE0200C28) & ~0xffff, 0xE0200C28); 
+	writel(0x111111, 0xE02000C0); 
+	writel(0x3f, 0xE02000C4); 
+	
+	writel(readl(0xE0200C20) & ~0xff00, 0xE0200C20); 
 	val = readl(0xE0200C24);
 	if ((val & 0x0C) == 0x00)
 	{
